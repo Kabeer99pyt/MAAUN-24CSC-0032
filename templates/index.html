@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Health Clinic Queue Manager{% endblock %}
+
+{% block content %}
+<div class="stats">
+    <div class="stat-box">
+        <h3>Patients Waiting</h3>
+        <div class="number">{{ queue_size }}</div>
+    </div>
+    <div class="stat-box">
+        <h3>Patients Seen Today</h3>
+        <div class="number">{{ patients_seen }}</div>
+    </div>
+</div>
+
+<div class="card button-group">
+    <a href="{{ url_for('register') }}" class="btn btn-success">➕ Register New Patient</a>
+    <a href="{{ url_for('call_next_patient') }}" class="btn">📋 Call Next Patient</a>
+</div>
+
+<div class="card">
+    <h2>Current Waiting Queue</h2>
+    
+    {% if queue %}
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Reason for Visit</th>
+                <th>Registration Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in queue %}
+            <tr>
+                <td>{{ patient.name }}</td>
+                <td>{{ patient.contact }}</td>
+                <td>{{ patient.reason }}</td>
+                <td>{{ patient.time }}</td>
+                <td>
+                    <span style="background-color: #f39c12; color: white; padding: 5px 10px; border-radius: 3px;">
+                        {{ patient.status }}
+                    </span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-message">
+        ✨ No patients in queue. The clinic is clear!
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
