@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Register Patient - Health Clinic Queue Manager{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Register New Patient</h2>
+    
+    <form method="POST" style="margin-top: 20px;">
+        <div style="margin-bottom: 20px;">
+            <label for="name" style="display: block; margin-bottom: 5px; font-weight: bold;">
+                Full Name <span style="color: red;">*</span>
+            </label>
+            <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                placeholder="Enter patient's full name" 
+                required
+                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;"
+            >
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label for="contact" style="display: block; margin-bottom: 5px; font-weight: bold;">
+                Phone/Email <span style="color: red;">*</span>
+            </label>
+            <input 
+                type="text" 
+                id="contact" 
+                name="contact" 
+                placeholder="Enter phone number or email" 
+                required
+                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px;"
+            >
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label for="reason" style="display: block; margin-bottom: 5px; font-weight: bold;">
+                Reason for Visit <span style="color: red;">*</span>
+            </label>
+            <textarea 
+                id="reason" 
+                name="reason" 
+                placeholder="Describe the reason for visit" 
+                required
+                rows="5"
+                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; font-family: Arial;"
+            ></textarea>
+        </div>
+        
+        <div style="text-align: center;">
+            <button type="submit" class="btn btn-success" style="font-size: 18px; padding: 15px 40px;">
+                ✅ Register Patient
+            </button>
+            <a href="{{ url_for('home') }}" class="btn" style="font-size: 18px; padding: 15px 40px;">
+                ← Back to Queue
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}
